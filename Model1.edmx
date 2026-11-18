@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AussieTravellerCompanyNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASNMaster">
+          <Key>
+            <PropertyRef Name="Salesorder" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Salesorder" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Line" Type="int" Nullable="false" />
+          <Property Name="FWROrderId" Type="nvarchar" MaxLength="70" />
+          <Property Name="StockCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderQty" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="ShipQty" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="OSQty" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="ASRStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ApiResponse" Type="nvarchar(max)" />
+          <Property Name="ApiStatus" Type="nvarchar" MaxLength="100" />
+          <Property Name="Source" Type="nvarchar" MaxLength="50" />
+          <Property Name="APIRequest" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AussieTravellerCompanyN.dbo.ImportFWRAuditLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ImportFWRAuditLogs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoOfSuccess" Type="int" />
+          <Property Name="NoOfFailure" Type="int" />
+          <Property Name="Salesorders" Type="nvarchar(max)" />
+          <Property Name="CustomerPOs" Type="nvarchar(max)" />
+          <Property Name="Payload" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="FailedReason" Type="nvarchar(max)" />
+          <Property Name="TotalOrders" Type="int" />
+          <Property Name="FailedPOs" Type="nvarchar(max)" />
+          <Property Name="SuccessPOs" Type="nvarchar(max)" />
+          <Property Name="IsExported" Type="bit" />
+          <Property Name="IsMailSent" Type="bit" />
+          <Property Name="FromMailAddr" Type="nvarchar(max)" />
+          <Property Name="ToMailAddr" Type="nvarchar(max)" />
+          <Property Name="Source" Type="nvarchar" MaxLength="50" />
+          <Property Name="FailedUpdateExportPOs" Type="nvarchar(max)" />
+          <Property Name="FailedUpdateExportPOsReason" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="AussieTravellerCompanyNModelStoreContainer">
+          <EntitySet Name="ASNMaster" EntityType="Self.ASNMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportFWRAuditLogs" EntityType="Self.ImportFWRAuditLogs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ImportFWRAuditLogs].[LogId] AS [LogId], 
+    [ImportFWRAuditLogs].[NoOfSuccess] AS [NoOfSuccess], 
+    [ImportFWRAuditLogs].[NoOfFailure] AS [NoOfFailure], 
+    [ImportFWRAuditLogs].[Salesorders] AS [Salesorders], 
+    [ImportFWRAuditLogs].[CustomerPOs] AS [CustomerPOs], 
+    [ImportFWRAuditLogs].[Payload] AS [Payload], 
+    [ImportFWRAuditLogs].[CreatedDate] AS [CreatedDate], 
+    [ImportFWRAuditLogs].[CreatedUser] AS [CreatedUser], 
+    [ImportFWRAuditLogs].[FailedReason] AS [FailedReason], 
+    [ImportFWRAuditLogs].[TotalOrders] AS [TotalOrders], 
+    [ImportFWRAuditLogs].[FailedPOs] AS [FailedPOs], 
+    [ImportFWRAuditLogs].[SuccessPOs] AS [SuccessPOs], 
+    [ImportFWRAuditLogs].[IsExported] AS [IsExported], 
+    [ImportFWRAuditLogs].[IsMailSent] AS [IsMailSent], 
+    [ImportFWRAuditLogs].[FromMailAddr] AS [FromMailAddr], 
+    [ImportFWRAuditLogs].[ToMailAddr] AS [ToMailAddr], 
+    [ImportFWRAuditLogs].[Source] AS [Source], 
+    [ImportFWRAuditLogs].[FailedUpdateExportPOs] AS [FailedUpdateExportPOs], 
+    [ImportFWRAuditLogs].[FailedUpdateExportPOsReason] AS [FailedUpdateExportPOsReason]
+    FROM [dbo].[ImportFWRAuditLogs] AS [ImportFWRAuditLogs]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AussieTravellerCompanyNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AussieTravellerCompanyNEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ImportFWRAuditLogs" EntityType="AussieTravellerCompanyNModel.ImportFWRAuditLog" />
+          <EntitySet Name="ASNMasters" EntityType="AussieTravellerCompanyNModel.ASNMaster" />
+        </EntityContainer>
+        <EntityType Name="ImportFWRAuditLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoOfSuccess" Type="Int32" />
+          <Property Name="NoOfFailure" Type="Int32" />
+          <Property Name="Salesorders" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerPOs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Payload" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FailedReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalOrders" Type="Int32" />
+          <Property Name="FailedPOs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SuccessPOs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsExported" Type="Boolean" />
+          <Property Name="IsMailSent" Type="Boolean" />
+          <Property Name="FromMailAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ToMailAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FailedUpdateExportPOs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FailedUpdateExportPOsReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ASNMaster">
+          <Key>
+            <PropertyRef Name="Salesorder" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Salesorder" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Line" Type="Int32" Nullable="false" />
+          <Property Name="FWROrderId" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="StockCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderQty" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ShipQty" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="OSQty" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ASRStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ApiResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApiStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="APIRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AussieTravellerCompanyNModelStoreContainer" CdmEntityContainer="AussieTravellerCompanyNEntities">
+          <EntitySetMapping Name="ImportFWRAuditLogs">
+            <EntityTypeMapping TypeName="AussieTravellerCompanyNModel.ImportFWRAuditLog">
+              <MappingFragment StoreEntitySet="ImportFWRAuditLogs">
+                <ScalarProperty Name="FailedUpdateExportPOsReason" ColumnName="FailedUpdateExportPOsReason" />
+                <ScalarProperty Name="FailedUpdateExportPOs" ColumnName="FailedUpdateExportPOs" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="ToMailAddr" ColumnName="ToMailAddr" />
+                <ScalarProperty Name="FromMailAddr" ColumnName="FromMailAddr" />
+                <ScalarProperty Name="IsMailSent" ColumnName="IsMailSent" />
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="SuccessPOs" ColumnName="SuccessPOs" />
+                <ScalarProperty Name="FailedPOs" ColumnName="FailedPOs" />
+                <ScalarProperty Name="TotalOrders" ColumnName="TotalOrders" />
+                <ScalarProperty Name="FailedReason" ColumnName="FailedReason" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Payload" ColumnName="Payload" />
+                <ScalarProperty Name="CustomerPOs" ColumnName="CustomerPOs" />
+                <ScalarProperty Name="Salesorders" ColumnName="Salesorders" />
+                <ScalarProperty Name="NoOfFailure" ColumnName="NoOfFailure" />
+                <ScalarProperty Name="NoOfSuccess" ColumnName="NoOfSuccess" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ASNMasters">
+            <EntityTypeMapping TypeName="AussieTravellerCompanyNModel.ASNMaster">
+              <MappingFragment StoreEntitySet="ASNMaster">
+                <ScalarProperty Name="APIRequest" ColumnName="APIRequest" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="ApiStatus" ColumnName="ApiStatus" />
+                <ScalarProperty Name="ApiResponse" ColumnName="ApiResponse" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ASRStatus" ColumnName="ASRStatus" />
+                <ScalarProperty Name="OSQty" ColumnName="OSQty" />
+                <ScalarProperty Name="ShipQty" ColumnName="ShipQty" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="FWROrderId" ColumnName="FWROrderId" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Salesorder" ColumnName="Salesorder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
